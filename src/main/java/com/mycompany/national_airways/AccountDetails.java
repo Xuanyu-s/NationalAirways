@@ -10,15 +10,22 @@ package com.mycompany.national_airways;
  */
 public class AccountDetails {
     
+     
     String userName;
     String password;
     String roles;
+    String status;
     
     public AccountDetails(String userName, String passWord, String roles){
+        this(userName, passWord, roles, "Active");
+    }
+    
+    public AccountDetails(String userName, String passWord, String roles, String status){
         
         this.userName = userName;
         this.password = passWord;
         this.roles = roles;
+        this.status = (status == null || status.isBlank()) ? "Active" : status;
         
     }
         
@@ -44,6 +51,14 @@ public class AccountDetails {
     
     public void setroles(String roles) {
         this.roles = roles;
+    }
+    
+    public String getStatus() {
+        return status;
+    }
+    
+    public void setStatus(String status) {
+        this.status = status;
     }
     
 }
