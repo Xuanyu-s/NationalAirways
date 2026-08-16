@@ -13,6 +13,6 @@ public class National_Airways {
     public static void main(String[] args) {
     mainMenu startframe = new mainMenu();
     startframe.setVisible(true);
-    startframe.showPanel("startPanel");
+    startframe.showPanel("mainMenuPanel");
     }
 }
