@@ -84,7 +84,7 @@ public class passengerInfo extends javax.swing.JFrame {
 
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1 Bag", "2 Bags", "3 Bags", "4+ Bags" }));
 
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "National Airways", "General Santos International Airport" }));
+        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cebu International Airport", "Iloilo International Airport" }));
         jComboBox3.addActionListener(this::jComboBox3ActionPerformed);
 
         jButton1.setText("Get Queue");
@@ -255,13 +255,10 @@ public class passengerInfo extends javax.swing.JFrame {
         PassengerDetails passenger = new PassengerDetails(fullName, age, ticketNumber, luggageCount, passengerType, destination);
         int queueNumber = PassengerStorage.getInstance().addPassenger(passenger);
 
-        String ticketMessage = String.format(
-                "Boarding Ticket%n%nPassenger: %s%nTicket No.: %s%nDestination: %s%nQueue Number: %04d%nStatus: Waiting",
-                fullName, ticketNumber, destination, queueNumber);
-        javax.swing.JOptionPane.showMessageDialog(this, ticketMessage,
-                "Queue Number Issued", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+        BoardingTicket ticket = new BoardingTicket(this, fullName, ticketNumber, "MNL", destination, queueNumber);
+        ticket.setVisible(true);
 
-        this.dispose();
+this.dispose();
         queueDisplay queuedisplay = new queueDisplay();
         queuedisplay.setVisible(true);
         queuedisplay.showPanel("boardingQueuePanel");
