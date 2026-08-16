@@ -12,11 +12,17 @@ public class auditLogs extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(auditLogs.class.getName());
 
+    private java.awt.Frame parent;
     /**
      * Creates new form NewJFrame
      */
     public auditLogs() {
         initComponents();
+    }
+    
+    public auditLogs(java.awt.Frame parent) {
+        this();
+        this.parent = parent;
     }
     
     private String previousPanel = "auditLogsPanel";
@@ -77,6 +83,7 @@ public class auditLogs extends javax.swing.JFrame {
         jButton1.addActionListener(this::jButton1ActionPerformed);
 
         jButton2.setText("Back");
+        jButton2.addActionListener(this::jButton2ActionPerformed);
 
         jButton3.setText("Print");
         jButton3.addActionListener(this::jButton3ActionPerformed);
@@ -139,6 +146,7 @@ public class auditLogs extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -148,6 +156,13 @@ public class auditLogs extends javax.swing.JFrame {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    this.dispose();
+        if (parent != null) {
+            parent.setVisible(true);
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments

@@ -17,6 +17,24 @@ public class queueDisplay extends javax.swing.JFrame {
      */
     public queueDisplay() {
         initComponents();
+        PassengerStorage.getInstance().addListener(this::refreshQueueTables);
+        refreshQueueTables();
+    }
+    
+     private void refreshQueueTables() {
+        javax.swing.table.DefaultTableModel model1 = (javax.swing.table.DefaultTableModel) jTable1.getModel();
+        javax.swing.table.DefaultTableModel model2 = (javax.swing.table.DefaultTableModel) jTable2.getModel();
+        model1.setRowCount(0);
+        model2.setRowCount(0);
+
+        for (PassengerDetails p : PassengerStorage.getInstance().getAllPassengers()) {
+            Object[] row = { p.getQueueNumber(), p.getLuggageStatus(), p.getBoardingStatus() };
+            if ("General Santos International Airport".equals(p.getDestination())) {
+                model1.addRow(row);
+            } else {
+                model2.addRow(row);
+            }
+        }
     }
     
     private String previousPanel = "boardingQueuePanel";
@@ -55,10 +73,7 @@ public class queueDisplay extends javax.swing.JFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+
             },
             new String [] {
                 "Queue Number", "Luggage Status", "Boarding Status"
@@ -68,10 +83,7 @@ public class queueDisplay extends javax.swing.JFrame {
 
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+
             },
             new String [] {
                 "Queue Number", "Luggage Status", "Boarding Status"
@@ -136,10 +148,14 @@ public class queueDisplay extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+    this.dispose();
+    mainMenu mainmenu = new mainMenu();
+    mainmenu.setVisible(true);
+    mainmenu.showPanel("mainMenuPanel");
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

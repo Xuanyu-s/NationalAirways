@@ -73,28 +73,32 @@ public class passengerInfo extends javax.swing.JFrame {
 
         jLabel3.setText("Ticket Number:");
 
-        jLabel4.setText("Luggage Bags:");
+        jLabel4.setText("Number of Luggage:");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Regular Passenger", "VIP Passenger", "Senior Citizen", "Standby Passenger", "Unaccompanied Minor Passenger" }));
+        jComboBox1.addActionListener(this::jComboBox1ActionPerformed);
 
         jLabel5.setText("Destination:");
 
         jLabel6.setText("Passenger Type:");
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1 Bag", "2 Bags", "3 Bags", "4+ Bags" }));
 
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "National Airways", "General Santos International Airport" }));
+        jComboBox3.addActionListener(this::jComboBox3ActionPerformed);
 
         jButton1.setText("Get Queue");
+        jButton1.addActionListener(this::jButton1ActionPerformed);
 
         jButton2.setText("Prev Panel");
+        jButton2.addActionListener(this::jButton2ActionPerformed);
 
         javax.swing.GroupLayout getQueuePanelLayout = new javax.swing.GroupLayout(getQueuePanel);
         getQueuePanel.setLayout(getQueuePanelLayout);
         getQueuePanelLayout.setHorizontalGroup(
             getQueuePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(getQueuePanelLayout.createSequentialGroup()
-                .addContainerGap(260, Short.MAX_VALUE)
+                .addGap(260, 260, 260)
                 .addGroup(getQueuePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, getQueuePanelLayout.createSequentialGroup()
                         .addGroup(getQueuePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -121,10 +125,9 @@ public class passengerInfo extends javax.swing.JFrame {
                                         .addComponent(jLabel4)
                                         .addGap(4, 4, 4)))
                                 .addGroup(getQueuePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(68, 68, 68)))
+                                    .addComponent(jComboBox3, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jComboBox2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                         .addGap(103, 103, 103))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, getQueuePanelLayout.createSequentialGroup()
                         .addComponent(jButton1)
@@ -181,6 +184,7 @@ public class passengerInfo extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
@@ -190,6 +194,91 @@ public class passengerInfo extends javax.swing.JFrame {
     private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField2ActionPerformed
+
+    private void jComboBox3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox3ActionPerformed
+
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox1ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    String fullName = jTextField1.getText().trim();
+        String ageText = jTextField3.getText().trim();
+        String ticketNumber = jTextField2.getText().trim();
+        String luggageSelection = (String) jComboBox2.getSelectedItem();
+        String passengerType = (String) jComboBox1.getSelectedItem();
+        String destination = (String) jComboBox3.getSelectedItem();
+
+        if (fullName.isEmpty() || ageText.isEmpty() || ticketNumber.isEmpty()
+                || luggageSelection == null || passengerType == null || destination == null) {
+            javax.swing.JOptionPane.showMessageDialog(this,
+                    "Please complete all required fields.", "Missing Information",
+                    javax.swing.JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        int age;
+        try {
+            age = Integer.parseInt(ageText);
+            if (age <= 0 || age > 120) throw new NumberFormatException();
+        } catch (NumberFormatException ex) {
+            javax.swing.JOptionPane.showMessageDialog(this,
+                    "Please enter a valid age.", "Invalid Age",
+                    javax.swing.JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        if (!TicketValidator.isValidFormat(ticketNumber)) {
+            javax.swing.JOptionPane.showMessageDialog(this,
+                    "Ticket number must follow the format AAA-YYYYMMDD-####\nExample: PAL-20260816-0001",
+                    "Invalid Ticket Number", javax.swing.JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        if (!TicketValidator.isValidDate(ticketNumber)) {
+            javax.swing.JOptionPane.showMessageDialog(this,
+                    "The date inside the ticket number is not a valid calendar date.",
+                    "Invalid Ticket Number", javax.swing.JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        if (PassengerStorage.getInstance().ticketExists(ticketNumber)) {
+            javax.swing.JOptionPane.showMessageDialog(this,
+                    "This ticket number has already been used.", "Duplicate Ticket",
+                    javax.swing.JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        int luggageCount = parseLuggageCount(luggageSelection);
+        PassengerDetails passenger = new PassengerDetails(fullName, age, ticketNumber, luggageCount, passengerType, destination);
+        int queueNumber = PassengerStorage.getInstance().addPassenger(passenger);
+
+        String ticketMessage = String.format(
+                "Boarding Ticket%n%nPassenger: %s%nTicket No.: %s%nDestination: %s%nQueue Number: %04d%nStatus: Waiting",
+                fullName, ticketNumber, destination, queueNumber);
+        javax.swing.JOptionPane.showMessageDialog(this, ticketMessage,
+                "Queue Number Issued", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+
+        this.dispose();
+        queueDisplay queuedisplay = new queueDisplay();
+        queuedisplay.setVisible(true);
+        queuedisplay.showPanel("boardingQueuePanel");
+    }
+
+    private int parseLuggageCount(String selection) {
+        if (selection == null || selection.isEmpty()) return 0;
+        char first = selection.charAt(0);
+        return Character.isDigit(first) ? Character.getNumericValue(first) : 0;
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    this.dispose();
+    mainMenu mainmenu = new mainMenu();
+    mainmenu.setVisible(true);
+    mainmenu.showPanel("mainMenuPanel");
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments

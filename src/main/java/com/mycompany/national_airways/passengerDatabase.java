@@ -12,11 +12,36 @@ public class passengerDatabase extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(passengerDatabase.class.getName());
 
+    private java.awt.Frame parent;
     /**
      * Creates new form NewJFrame
      */
     public passengerDatabase() {
         initComponents();
+        PassengerStorage.getInstance().addListener(this::refreshTable);
+        refreshTable();
+    }
+    
+    public passengerDatabase(java.awt.Frame parent) {
+        this();
+        this.parent = parent;
+    }
+    
+    private void refreshTable() {
+        String filter = (String) jComboBox1.getSelectedItem();
+        javax.swing.table.DefaultTableModel model = (javax.swing.table.DefaultTableModel) jTable1.getModel();
+        model.setRowCount(0);
+
+        for (PassengerDetails p : PassengerStorage.getInstance().getAllPassengers()) {
+            if (filter != null && !"All".equals(filter) && !filter.equals(p.getPassengerType())) {
+                continue;
+            }
+            model.addRow(new Object[]{
+                p.getQueueNumber(), p.getFullName(), p.getTicketNumber(),
+                p.getPassengerType(), p.getDestination(), p.getBoardingStatus(),
+                p.getNoShowReason()
+            });
+        }
     }
     
     private String previousPanel = "passengerDatabasePanel";
@@ -56,16 +81,14 @@ public class passengerDatabase extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jButton1.setText("Back");
+        jButton1.addActionListener(this::jButton1ActionPerformed);
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Queue No.", "Full Name", "Ticket Number", "Passenger Type", "Destination", "Status", "Reason"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
@@ -80,7 +103,8 @@ public class passengerDatabase extends javax.swing.JFrame {
 
         jLabel2.setText("Filter by Passenger Type:");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "All", "Regular Passenger", "VIP Passenger", "Senior Citizen", "Standby Passenger", "Unaccompanied Minor Passenger" }));
+        jComboBox1.addActionListener(this::jComboBox1ActionPerformed);
 
         javax.swing.GroupLayout passengerDatabasePanelLayout = new javax.swing.GroupLayout(passengerDatabasePanel);
         passengerDatabasePanel.setLayout(passengerDatabasePanelLayout);
@@ -106,7 +130,7 @@ public class passengerDatabase extends javax.swing.JFrame {
                         .addGap(72, 72, 72)
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(passengerDatabasePanelLayout.createSequentialGroup()
                         .addGap(57, 57, 57)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 495, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -145,7 +169,19 @@ public class passengerDatabase extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+       refreshTable();
+    }//GEN-LAST:event_jComboBox1ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    this.dispose();
+        if (parent != null) {
+            parent.setVisible(true);
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
