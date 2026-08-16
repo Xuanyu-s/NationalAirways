@@ -20,6 +20,23 @@ public class adminDashboard extends javax.swing.JFrame {
      */
     public adminDashboard() {
         initComponents();
+        PassengerStorage.getInstance().addListener(this::refreshTable);
+        refreshTable();
+    }
+    
+    private void refreshTable() {
+        javax.swing.table.DefaultTableModel model = (javax.swing.table.DefaultTableModel) jTable1.getModel();
+        model.setRowCount(0);
+        for (PassengerDetails p : PassengerStorage.getInstance().getAllPassengers()) {
+        String status = p.getBoardingStatus();
+        if ("Boarded".equals(status) || "No-Show".equals(status)) {
+            continue; // completed passengers drop off the live dashboard
+        }
+        model.addRow(new Object[]{
+            p.getQueueNumber(), p.getFullName(), p.getAge(), p.getTicketNumber(),
+            p.getLuggageCount(), p.getPassengerType(), p.getDestination(), p.getBoardingStatus()
+        });
+        }
     }
     
     public adminDashboard(java.awt.Frame parent) {
@@ -52,22 +69,18 @@ public class adminDashboard extends javax.swing.JFrame {
 
         jToggleButton1 = new javax.swing.JToggleButton();
         adminDashboardPanel = new javax.swing.JPanel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
         logoutButton = new javax.swing.JButton();
         passengerDatabaseButton = new javax.swing.JButton();
         auditLogsButton = new javax.swing.JButton();
-        passengerDatabaseButton1 = new javax.swing.JButton();
+        userManagementButton = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
         jToggleButton1.setText("jToggleButton1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        jTextField1.setText("Call Passenger");
-
-        jTextField3.setText("Process Passenger");
 
         logoutButton.setText("Log out");
         logoutButton.addActionListener(this::logoutButtonActionPerformed);
@@ -78,30 +91,34 @@ public class adminDashboard extends javax.swing.JFrame {
         auditLogsButton.setText("Audit Logs");
         auditLogsButton.addActionListener(this::auditLogsButtonActionPerformed);
 
-        passengerDatabaseButton1.setText("User Management");
-        passengerDatabaseButton1.addActionListener(this::passengerDatabaseButton1ActionPerformed);
+        userManagementButton.setText("User Management");
+        userManagementButton.addActionListener(this::userManagementButtonActionPerformed);
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+
             },
             new String [] {
-                "Full Name", "Age", "Ticket Number", "Luggage Bags", "Passenger Type", "Destination"
+                "Queue No.", "Full Name", "Age", "Ticket Number", "Luggage Bags", "Passenger Type", "Destination", "Status"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
+
+        jButton1.setText("Call Passenger");
+        jButton1.addActionListener(this::jButton1ActionPerformed);
+
+        jButton2.setText("Process Passenger");
+        jButton2.addActionListener(this::jButton2ActionPerformed);
 
         javax.swing.GroupLayout adminDashboardPanelLayout = new javax.swing.GroupLayout(adminDashboardPanel);
         adminDashboardPanel.setLayout(adminDashboardPanelLayout);
         adminDashboardPanelLayout.setHorizontalGroup(
             adminDashboardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(adminDashboardPanelLayout.createSequentialGroup()
-                .addGap(15, 15, 15)
+                .addContainerGap()
                 .addGroup(adminDashboardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(adminDashboardPanelLayout.createSequentialGroup()
+                        .addGap(9, 9, 9)
                         .addComponent(passengerDatabaseButton)
                         .addGap(33, 33, 33)
                         .addComponent(auditLogsButton, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -110,13 +127,14 @@ public class adminDashboard extends javax.swing.JFrame {
                         .addGap(15, 15, 15))
                     .addGroup(adminDashboardPanelLayout.createSequentialGroup()
                         .addGroup(adminDashboardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(passengerDatabaseButton1)
+                            .addComponent(userManagementButton)
                             .addGroup(adminDashboardPanelLayout.createSequentialGroup()
-                                .addGroup(adminDashboardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jTextField1)
-                                    .addComponent(jTextField3, javax.swing.GroupLayout.DEFAULT_SIZE, 116, Short.MAX_VALUE))
+                                .addGap(6, 6, 6)
+                                .addGroup(adminDashboardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jScrollPane1)))
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 451, Short.MAX_VALUE)))
                         .addContainerGap())))
         );
         adminDashboardPanelLayout.setVerticalGroup(
@@ -129,16 +147,16 @@ public class adminDashboard extends javax.swing.JFrame {
                     .addComponent(auditLogsButton))
                 .addGroup(adminDashboardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(adminDashboardPanelLayout.createSequentialGroup()
-                        .addGap(116, 116, 116)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(33, 33, 33)
-                        .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, adminDashboardPanelLayout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
-                .addComponent(passengerDatabaseButton1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
+                    .addGroup(adminDashboardPanelLayout.createSequentialGroup()
+                        .addGap(101, 101, 101)
+                        .addComponent(jButton1)
+                        .addGap(54, 54, 54)
+                        .addComponent(jButton2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addComponent(userManagementButton)
                 .addGap(19, 19, 19))
         );
 
@@ -154,6 +172,7 @@ public class adminDashboard extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void logoutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutButtonActionPerformed
@@ -169,22 +188,88 @@ public class adminDashboard extends javax.swing.JFrame {
     }//GEN-LAST:event_logoutButtonActionPerformed
 
     private void auditLogsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_auditLogsButtonActionPerformed
-    this.dispose();
-    auditLogs auditlogs = new auditLogs();
+    this.setVisible(false);
+    auditLogs auditlogs = new auditLogs(this);
     auditlogs.setVisible(true);
-    auditlogs.showPanel("auditLogsPanel");
     }//GEN-LAST:event_auditLogsButtonActionPerformed
 
     private void passengerDatabaseButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passengerDatabaseButtonActionPerformed
-    this.dispose();
-    passengerDatabase passengerdatabase = new passengerDatabase();
+    this.setVisible(false);
+    passengerDatabase passengerdatabase = new passengerDatabase(this);
     passengerdatabase.setVisible(true);
-    passengerdatabase.showPanel("passengerDatabasePanel");
     }//GEN-LAST:event_passengerDatabaseButtonActionPerformed
 
-    private void passengerDatabaseButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passengerDatabaseButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_passengerDatabaseButton1ActionPerformed
+    private void userManagementButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userManagementButtonActionPerformed
+    this.setVisible(false);
+    userManagement usermanagement = new userManagement(this);
+    usermanagement.setVisible(true);
+    }//GEN-LAST:event_userManagementButtonActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    PassengerStorage storage = PassengerStorage.getInstance();
+    PassengerDetails next = storage.getNextWaitingPassenger();
+
+if (next == null) {
+    JOptionPane.showMessageDialog(this,
+            "No Passengers waiting",
+            "Queue Empty",
+            JOptionPane.INFORMATION_MESSAGE);
+    return;
+}
+
+int confirm = JOptionPane.showConfirmDialog(this,
+        "Call next passenger: " + next.getFullName() + " (Queue No. " + next.getQueueNumber() + ")?",
+        "Confirm Call Passenger",
+        JOptionPane.YES_NO_OPTION);
+
+if (confirm != JOptionPane.YES_OPTION) {
+    return;
+}
+
+storage.updateBoardingStatus(next.getQueueNumber(), "Now Boarding");
+storage.recordAuditLog("Called passenger \"" + next.getFullName()
+        + "\" (Queue No. " + next.getQueueNumber() + ") for boarding.");
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    PassengerStorage storage = PassengerStorage.getInstance();
+    PassengerDetails current = storage.getCurrentBoardingPassenger();
+
+if (current == null) {
+    JOptionPane.showMessageDialog(this,
+            "No Passenger currently boarding",
+            "No Passenger",
+            JOptionPane.INFORMATION_MESSAGE);
+    return;
+}
+
+Object[] options = {"Mark Boarded", "Mark No-Show"};
+int choice = JOptionPane.showOptionDialog(this,
+        "Now Boarding: " + current.getFullName() + " (Queue No. " + current.getQueueNumber() + ")",
+        "Process Passenger",
+        JOptionPane.DEFAULT_OPTION,
+        JOptionPane.QUESTION_MESSAGE,
+        null, options, options[0]);
+
+if (choice == 0) {
+    storage.updateBoardingStatus(current.getQueueNumber(), "Boarded");
+    storage.recordAuditLog("Marked passenger \"" + current.getFullName()
+            + "\" (Queue No. " + current.getQueueNumber() + ") as Boarded.");
+
+} else if (choice == 1) {
+    String reason = JOptionPane.showInputDialog(this,
+            "Enter No-Show Reason:",
+            "No-Show Reason",
+            JOptionPane.PLAIN_MESSAGE);
+
+    if (reason != null) {
+    storage.updateBoardingStatus(current.getQueueNumber(), "No-Show");
+    storage.setNoShowReason(current.getQueueNumber(), reason.isBlank() ? "N/A" : reason);
+    storage.recordAuditLog("Marked passenger \"" + current.getFullName()
+            + "\" (Queue No. " + current.getQueueNumber() + ") as No-Show. Reason: " + reason);
+    }
+}
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -214,13 +299,13 @@ public class adminDashboard extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel adminDashboardPanel;
     private javax.swing.JButton auditLogsButton;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField3;
     private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JButton logoutButton;
     private javax.swing.JButton passengerDatabaseButton;
-    private javax.swing.JButton passengerDatabaseButton1;
+    private javax.swing.JButton userManagementButton;
     // End of variables declaration//GEN-END:variables
 }
