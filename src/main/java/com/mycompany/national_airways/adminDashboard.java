@@ -4,6 +4,8 @@
  */
 package com.mycompany.national_airways;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Ace
@@ -12,11 +14,17 @@ public class adminDashboard extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(adminDashboard.class.getName());
 
+    private java.awt.Frame parent;
     /**
      * Creates new form NewJFrame
      */
     public adminDashboard() {
         initComponents();
+    }
+    
+    public adminDashboard(java.awt.Frame parent) {
+        this();
+        this.parent = parent;
     }
     
     private String previousPanel = "adminDashboardPanel";
@@ -45,30 +53,21 @@ public class adminDashboard extends javax.swing.JFrame {
         jToggleButton1 = new javax.swing.JToggleButton();
         adminDashboardPanel = new javax.swing.JPanel();
         jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
         jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
-        jTextField6 = new javax.swing.JTextField();
         logoutButton = new javax.swing.JButton();
         passengerDatabaseButton = new javax.swing.JButton();
         auditLogsButton = new javax.swing.JButton();
+        passengerDatabaseButton1 = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
 
         jToggleButton1.setText("jToggleButton1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jTextField1.setText("jTextField1");
+        jTextField1.setText("Call Passenger");
 
-        jTextField2.setText("jTextField2");
-
-        jTextField3.setText("jTextField3");
-
-        jTextField4.setText("jTextField4");
-
-        jTextField5.setText("jTextField4");
-
-        jTextField6.setText("jTextField4");
+        jTextField3.setText("Process Passenger");
 
         logoutButton.setText("Log out");
         logoutButton.addActionListener(this::logoutButtonActionPerformed);
@@ -79,30 +78,46 @@ public class adminDashboard extends javax.swing.JFrame {
         auditLogsButton.setText("Audit Logs");
         auditLogsButton.addActionListener(this::auditLogsButtonActionPerformed);
 
+        passengerDatabaseButton1.setText("User Management");
+        passengerDatabaseButton1.addActionListener(this::passengerDatabaseButton1ActionPerformed);
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
+            },
+            new String [] {
+                "Full Name", "Age", "Ticket Number", "Luggage Bags", "Passenger Type", "Destination"
+            }
+        ));
+        jScrollPane1.setViewportView(jTable1);
+
         javax.swing.GroupLayout adminDashboardPanelLayout = new javax.swing.GroupLayout(adminDashboardPanel);
         adminDashboardPanel.setLayout(adminDashboardPanelLayout);
         adminDashboardPanelLayout.setHorizontalGroup(
             adminDashboardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(adminDashboardPanelLayout.createSequentialGroup()
-                .addGap(120, 120, 120)
-                .addGroup(adminDashboardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(adminDashboardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(76, 76, 76))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, adminDashboardPanelLayout.createSequentialGroup()
                 .addGap(15, 15, 15)
-                .addComponent(passengerDatabaseButton)
-                .addGap(33, 33, 33)
-                .addComponent(auditLogsButton, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 152, Short.MAX_VALUE)
-                .addComponent(logoutButton)
-                .addGap(15, 15, 15))
+                .addGroup(adminDashboardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(adminDashboardPanelLayout.createSequentialGroup()
+                        .addComponent(passengerDatabaseButton)
+                        .addGap(33, 33, 33)
+                        .addComponent(auditLogsButton, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 158, Short.MAX_VALUE)
+                        .addComponent(logoutButton)
+                        .addGap(15, 15, 15))
+                    .addGroup(adminDashboardPanelLayout.createSequentialGroup()
+                        .addGroup(adminDashboardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(passengerDatabaseButton1)
+                            .addGroup(adminDashboardPanelLayout.createSequentialGroup()
+                                .addGroup(adminDashboardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jTextField1)
+                                    .addComponent(jTextField3, javax.swing.GroupLayout.DEFAULT_SIZE, 116, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jScrollPane1)))
+                        .addContainerGap())))
         );
         adminDashboardPanelLayout.setVerticalGroup(
             adminDashboardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -112,22 +127,19 @@ public class adminDashboard extends javax.swing.JFrame {
                     .addComponent(logoutButton)
                     .addComponent(passengerDatabaseButton)
                     .addComponent(auditLogsButton))
-                .addGap(72, 72, 72)
-                .addGroup(adminDashboardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
                 .addGroup(adminDashboardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(adminDashboardPanelLayout.createSequentialGroup()
-                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(37, 37, 37))
+                        .addGap(116, 116, 116)
+                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(33, 33, 33)
+                        .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, adminDashboardPanelLayout.createSequentialGroup()
-                        .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(27, 27, 27)))
-                .addGroup(adminDashboardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(167, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
+                .addComponent(passengerDatabaseButton1)
+                .addGap(19, 19, 19))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -145,7 +157,15 @@ public class adminDashboard extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void logoutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutButtonActionPerformed
-        // TODO add your handling code here:
+    int confirm = JOptionPane.showConfirmDialog(this,
+            "Are you sure you want to log out?", "Confirm Logout",
+            JOptionPane.YES_NO_OPTION);
+    if (confirm == JOptionPane.YES_OPTION) {
+        this.dispose();
+        if (parent != null) {
+            parent.setVisible(true);
+        }
+    }
     }//GEN-LAST:event_logoutButtonActionPerformed
 
     private void auditLogsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_auditLogsButtonActionPerformed
@@ -161,6 +181,10 @@ public class adminDashboard extends javax.swing.JFrame {
     passengerdatabase.setVisible(true);
     passengerdatabase.showPanel("passengerDatabasePanel");
     }//GEN-LAST:event_passengerDatabaseButtonActionPerformed
+
+    private void passengerDatabaseButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passengerDatabaseButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_passengerDatabaseButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -190,14 +214,13 @@ public class adminDashboard extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel adminDashboardPanel;
     private javax.swing.JButton auditLogsButton;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
     private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JButton logoutButton;
     private javax.swing.JButton passengerDatabaseButton;
+    private javax.swing.JButton passengerDatabaseButton1;
     // End of variables declaration//GEN-END:variables
 }
