@@ -22,20 +22,20 @@ public class queueDisplay extends javax.swing.JFrame {
     }
     
      private void refreshQueueTables() {
-        javax.swing.table.DefaultTableModel model1 = (javax.swing.table.DefaultTableModel) jTable1.getModel();
-        javax.swing.table.DefaultTableModel model2 = (javax.swing.table.DefaultTableModel) jTable2.getModel();
-        model1.setRowCount(0);
-        model2.setRowCount(0);
+    javax.swing.table.DefaultTableModel model1 = (javax.swing.table.DefaultTableModel) jTable1.getModel();
+    javax.swing.table.DefaultTableModel model2 = (javax.swing.table.DefaultTableModel) jTable2.getModel();
+    model1.setRowCount(0);
+    model2.setRowCount(0);
 
-        for (PassengerDetails p : PassengerStorage.getInstance().getAllPassengers()) {
-            Object[] row = { p.getQueueNumber(), p.getLuggageStatus(), p.getBoardingStatus() };
-            if ("General Santos International Airport".equals(p.getDestination())) {
-                model1.addRow(row);
-            } else {
-                model2.addRow(row);
-            }
+    for (PassengerDetails p : PassengerStorage.getInstance().getAllPassengers()) {
+        Object[] row = { p.getQueueNumber(), p.getLuggageStatus(), p.getBoardingStatus() };
+        if ("Iloilo International Airport".equals(p.getDestination())) {
+            model1.addRow(row);
+        } else if ("Cebu International Airport".equals(p.getDestination())) {
+            model2.addRow(row);
         }
     }
+}
     
     private String previousPanel = "boardingQueuePanel";
     private String currentPanel = "boardingQueuePanel";
@@ -68,8 +68,15 @@ public class queueDisplay extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(700, 450));
+
+        boardingQueuePanel.setBackground(new java.awt.Color(0, 51, 102));
+        boardingQueuePanel.setPreferredSize(new java.awt.Dimension(700, 450));
+        boardingQueuePanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -81,6 +88,8 @@ public class queueDisplay extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(jTable1);
 
+        boardingQueuePanel.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 250, 562, 140));
+
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -91,50 +100,43 @@ public class queueDisplay extends javax.swing.JFrame {
         ));
         jScrollPane2.setViewportView(jTable2);
 
-        jButton1.setText("Prev Panel");
+        boardingQueuePanel.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 562, 140));
+
+        jButton1.setBackground(new java.awt.Color(255, 193, 7));
+        jButton1.setText("Back");
         jButton1.addActionListener(this::jButton1ActionPerformed);
+        boardingQueuePanel.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 11, 85, -1));
 
-        jLabel1.setText("National Airways");
+        jLabel1.setForeground(new java.awt.Color(255, 193, 7));
+        jLabel1.setText("Cebu International Airport");
+        boardingQueuePanel.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 171, -1));
 
-        jLabel2.setText("General Santos International Airport");
+        jLabel2.setForeground(new java.awt.Color(255, 193, 7));
+        jLabel2.setText("Iloilo International Airport");
+        boardingQueuePanel.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 230, 202, -1));
 
-        javax.swing.GroupLayout boardingQueuePanelLayout = new javax.swing.GroupLayout(boardingQueuePanel);
-        boardingQueuePanel.setLayout(boardingQueuePanelLayout);
-        boardingQueuePanelLayout.setHorizontalGroup(
-            boardingQueuePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(boardingQueuePanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(boardingQueuePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(boardingQueuePanelLayout.createSequentialGroup()
-                        .addGroup(boardingQueuePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 562, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 562, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(32, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, boardingQueuePanelLayout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton1))
-                    .addGroup(boardingQueuePanelLayout.createSequentialGroup()
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))))
+        jLabel8.setBackground(new java.awt.Color(255, 204, 0));
+        jLabel8.setFont(new java.awt.Font("Segoe UI Variable", 0, 18)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel8.setText("Passenger Information");
+        boardingQueuePanel.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 190, 30));
+
+        jPanel2.setBackground(new java.awt.Color(0, 0, 0));
+        jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel2.setForeground(new java.awt.Color(255, 204, 0));
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 698, Short.MAX_VALUE)
         );
-        boardingQueuePanelLayout.setVerticalGroup(
-            boardingQueuePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, boardingQueuePanelLayout.createSequentialGroup()
-                .addGroup(boardingQueuePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(boardingQueuePanelLayout.createSequentialGroup()
-                        .addComponent(jButton1)
-                        .addGap(0, 7, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, boardingQueuePanelLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jLabel1)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
+
+        boardingQueuePanel.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 700, 10));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -188,6 +190,8 @@ public class queueDisplay extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;

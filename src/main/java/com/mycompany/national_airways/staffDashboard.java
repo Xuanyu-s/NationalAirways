@@ -68,23 +68,41 @@ public class staffDashboard extends javax.swing.JFrame {
     private void initComponents() {
 
         jToggleButton1 = new javax.swing.JToggleButton();
+        jRadioButton1 = new javax.swing.JRadioButton();
         adminDashboardPanel = new javax.swing.JPanel();
         logoutButton = new javax.swing.JButton();
         passengerDatabaseButton = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jButton2 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
 
         jToggleButton1.setText("jToggleButton1");
 
+        jRadioButton1.setText("jRadioButton1");
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        adminDashboardPanel.setBackground(new java.awt.Color(0, 51, 102));
+        adminDashboardPanel.setForeground(new java.awt.Color(255, 255, 255));
+        adminDashboardPanel.setPreferredSize(new java.awt.Dimension(700, 450));
+        adminDashboardPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        logoutButton.setBackground(new java.awt.Color(255, 204, 0));
+        logoutButton.setForeground(new java.awt.Color(0, 51, 102));
         logoutButton.setText("Log out");
         logoutButton.addActionListener(this::logoutButtonActionPerformed);
+        adminDashboardPanel.add(logoutButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 10, 80, 30));
 
-        passengerDatabaseButton.setText("View Passanger Database");
+        passengerDatabaseButton.setBackground(new java.awt.Color(255, 204, 0));
+        passengerDatabaseButton.setForeground(new java.awt.Color(0, 51, 102));
+        passengerDatabaseButton.setText("<html>View Passanger Database<html>");
         passengerDatabaseButton.addActionListener(this::passengerDatabaseButtonActionPerformed);
+        adminDashboardPanel.add(passengerDatabaseButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 180, 120, 70));
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -96,51 +114,53 @@ public class staffDashboard extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(jTable1);
 
-        jButton2.setText("Process Passenger");
-        jButton2.addActionListener(this::jButton2ActionPerformed);
+        adminDashboardPanel.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 100, 513, 244));
 
+        jButton1.setBackground(new java.awt.Color(255, 204, 0));
+        jButton1.setForeground(new java.awt.Color(0, 51, 102));
         jButton1.setText("Call Passenger");
         jButton1.addActionListener(this::jButton1ActionPerformed);
+        adminDashboardPanel.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 380, 160, -1));
 
-        javax.swing.GroupLayout adminDashboardPanelLayout = new javax.swing.GroupLayout(adminDashboardPanel);
-        adminDashboardPanel.setLayout(adminDashboardPanelLayout);
-        adminDashboardPanelLayout.setHorizontalGroup(
-            adminDashboardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, adminDashboardPanelLayout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addComponent(passengerDatabaseButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(logoutButton)
-                .addGap(15, 15, 15))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, adminDashboardPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(adminDashboardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(adminDashboardPanelLayout.createSequentialGroup()
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 441, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+        jButton2.setBackground(new java.awt.Color(255, 204, 0));
+        jButton2.setForeground(new java.awt.Color(0, 51, 102));
+        jButton2.setText("Process Passenger");
+        jButton2.addActionListener(this::jButton2ActionPerformed);
+        adminDashboardPanel.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 380, 160, -1));
+
+        jLabel1.setBackground(new java.awt.Color(255, 204, 0));
+        jLabel1.setFont(new java.awt.Font("Segoe UI Variable", 0, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("National Airways");
+        adminDashboardPanel.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 160, 20));
+
+        jLabel2.setBackground(new java.awt.Color(255, 204, 0));
+        jLabel2.setFont(new java.awt.Font("Segoe UI Variable", 0, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText("Staff Dashboard");
+        adminDashboardPanel.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 10, 160, 20));
+
+        jLabel3.setBackground(new java.awt.Color(255, 204, 0));
+        jLabel3.setForeground(new java.awt.Color(255, 204, 0));
+        jLabel3.setText("Live Boarding Queue");
+        adminDashboardPanel.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 80, -1, -1));
+
+        jPanel1.setBackground(new java.awt.Color(0, 0, 0));
+        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel1.setForeground(new java.awt.Color(255, 204, 0));
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 698, Short.MAX_VALUE)
         );
-        adminDashboardPanelLayout.setVerticalGroup(
-            adminDashboardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(adminDashboardPanelLayout.createSequentialGroup()
-                .addGap(17, 17, 17)
-                .addGroup(adminDashboardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(logoutButton)
-                    .addComponent(passengerDatabaseButton))
-                .addGroup(adminDashboardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(adminDashboardPanelLayout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(adminDashboardPanelLayout.createSequentialGroup()
-                        .addGap(110, 110, 110)
-                        .addComponent(jButton1)
-                        .addGap(55, 55, 55)
-                        .addComponent(jButton2)))
-                .addContainerGap(25, Short.MAX_VALUE))
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
+
+        adminDashboardPanel.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 700, 10));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -239,7 +259,6 @@ if (choice == 0) {
             + "\" (Queue No. " + current.getQueueNumber() + ") as No-Show. Reason: " + reason);
     }
 }
-    
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
@@ -271,6 +290,11 @@ if (choice == 0) {
     private javax.swing.JPanel adminDashboardPanel;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JToggleButton jToggleButton1;

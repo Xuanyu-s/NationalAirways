@@ -44,49 +44,72 @@ public class mainMenu extends javax.swing.JFrame {
 
         mainMenuPanel = new javax.swing.JPanel();
         getQueueButton = new javax.swing.JButton();
-        signInButton = new javax.swing.JButton();
         viewBQButton = new javax.swing.JButton();
+        systemLabel = new javax.swing.JLabel();
+        footerLabel = new javax.swing.JLabel();
+        signInButton = new javax.swing.JButton();
+        subtitleLabel = new javax.swing.JLabel();
+        titleLabel = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        mainMenuPanel.setBackground(new java.awt.Color(0, 51, 102));
+        mainMenuPanel.setPreferredSize(new java.awt.Dimension(700, 450));
+        mainMenuPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        getQueueButton.setBackground(new java.awt.Color(255, 193, 7));
+        getQueueButton.setForeground(new java.awt.Color(0, 51, 102));
         getQueueButton.setText("Get Queue");
         getQueueButton.addActionListener(this::getQueueButtonActionPerformed);
+        mainMenuPanel.add(getQueueButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 200, 159, 53));
 
+        viewBQButton.setBackground(new java.awt.Color(255, 193, 7));
+        viewBQButton.setForeground(new java.awt.Color(0, 51, 102));
+        viewBQButton.setText("<html>View Boarding Queue<html>");
+        viewBQButton.addActionListener(this::viewBQButtonActionPerformed);
+        mainMenuPanel.add(viewBQButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 290, 159, 53));
+
+        systemLabel.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        systemLabel.setForeground(new java.awt.Color(255, 193, 7));
+        systemLabel.setText("WELCOME TO NATIONAL AIRWAYS");
+        mainMenuPanel.add(systemLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 110, -1, -1));
+
+        footerLabel.setForeground(new java.awt.Color(255, 255, 255));
+        footerLabel.setText("Safe • Organized • Efficient");
+        mainMenuPanel.add(footerLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 390, -1, -1));
+
+        signInButton.setBackground(new java.awt.Color(255, 193, 7));
+        signInButton.setForeground(new java.awt.Color(0, 51, 102));
         signInButton.setText("Log in");
         signInButton.addActionListener(this::signInButtonActionPerformed);
+        mainMenuPanel.add(signInButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 20, 74, 34));
 
-        viewBQButton.setText("View Boarding Queue");
-        viewBQButton.addActionListener(this::viewBQButtonActionPerformed);
+        subtitleLabel.setForeground(new java.awt.Color(255, 193, 7));
+        subtitleLabel.setText("Boarding Management System");
+        mainMenuPanel.add(subtitleLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 50, -1, -1));
 
-        javax.swing.GroupLayout mainMenuPanelLayout = new javax.swing.GroupLayout(mainMenuPanel);
-        mainMenuPanel.setLayout(mainMenuPanelLayout);
-        mainMenuPanelLayout.setHorizontalGroup(
-            mainMenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainMenuPanelLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(signInButton, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(15, 15, 15))
-            .addGroup(mainMenuPanelLayout.createSequentialGroup()
-                .addGroup(mainMenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(mainMenuPanelLayout.createSequentialGroup()
-                        .addGap(154, 154, 154)
-                        .addComponent(viewBQButton, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(mainMenuPanelLayout.createSequentialGroup()
-                        .addGap(72, 72, 72)
-                        .addComponent(getQueueButton, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(287, Short.MAX_VALUE))
+        titleLabel.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        titleLabel.setForeground(new java.awt.Color(255, 193, 7));
+        titleLabel.setText("NATIONAL AIRWAYS");
+        mainMenuPanel.add(titleLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 10, -1, -1));
+
+        jPanel1.setBackground(new java.awt.Color(0, 0, 0));
+        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel1.setForeground(new java.awt.Color(255, 204, 0));
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 698, Short.MAX_VALUE)
         );
-        mainMenuPanelLayout.setVerticalGroup(
-            mainMenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainMenuPanelLayout.createSequentialGroup()
-                .addGap(17, 17, 17)
-                .addComponent(signInButton, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 182, Short.MAX_VALUE)
-                .addComponent(getQueueButton, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(33, 33, 33)
-                .addComponent(viewBQButton, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28))
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
+
+        mainMenuPanel.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 700, 10));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -103,13 +126,6 @@ public class mainMenu extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void signInButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signInButtonActionPerformed
-    this.dispose();
-    adminLogin loginPanel = new adminLogin();
-    loginPanel.setVisible(true);
-    loginPanel.showPanel("loginPanel");
-    }//GEN-LAST:event_signInButtonActionPerformed
-
     private void getQueueButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_getQueueButtonActionPerformed
     this.dispose();
     passengerInfo getqueue = new passengerInfo();
@@ -123,6 +139,13 @@ public class mainMenu extends javax.swing.JFrame {
     boardingPanel.setVisible(true);
     boardingPanel.showPanel("boardingQueuePanel");
     }//GEN-LAST:event_viewBQButtonActionPerformed
+
+    private void signInButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signInButtonActionPerformed
+        this.dispose();
+        loginPanel loginPanel = new loginPanel();
+        loginPanel.setVisible(true);
+        loginPanel.showPanel("loginPanel");
+    }//GEN-LAST:event_signInButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -150,9 +173,14 @@ public class mainMenu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel footerLabel;
     private javax.swing.JButton getQueueButton;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel mainMenuPanel;
     private javax.swing.JButton signInButton;
+    private javax.swing.JLabel subtitleLabel;
+    private javax.swing.JLabel systemLabel;
+    private javax.swing.JLabel titleLabel;
     private javax.swing.JButton viewBQButton;
     // End of variables declaration//GEN-END:variables
 }

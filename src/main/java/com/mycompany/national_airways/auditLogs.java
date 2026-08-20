@@ -4,6 +4,11 @@
  */
 package com.mycompany.national_airways;
 
+import javax.swing.JOptionPane;
+import javax.swing.RowFilter;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
+
 /**
  *
  * @author Ace
@@ -57,15 +62,20 @@ public class auditLogs extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(700, 450));
+
+        auditLogsPanel.setBackground(new java.awt.Color(0, 51, 102));
+        auditLogsPanel.setMinimumSize(new java.awt.Dimension(700, 450));
+        auditLogsPanel.setPreferredSize(new java.awt.Dimension(700, 450));
+        auditLogsPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+
             },
             new String [] {
                 "Log ID", "Username", "Role", "Action", "Details", "Timestamp"
@@ -73,66 +83,63 @@ public class auditLogs extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(jTable1);
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        auditLogsPanel.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 110, 450, 240));
 
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "All", "Admin", "Staff"}));
+        jComboBox1.addActionListener(this::jComboBox1ActionPerformed);
+        auditLogsPanel.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 80, -1, -1));
+
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Filter by Role:");
+        auditLogsPanel.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 80, 80, -1));
 
-        jTextField5.setText("jTextField5");
+        jTextField5.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextField5KeyReleased(evt);
+            }
+        });
+        auditLogsPanel.add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 20, 178, -1));
 
+        jButton1.setBackground(new java.awt.Color(255, 193, 7));
+        jButton1.setForeground(new java.awt.Color(0, 40, 80));
         jButton1.setText("Search");
         jButton1.addActionListener(this::jButton1ActionPerformed);
+        auditLogsPanel.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 20, 90, -1));
 
+        jButton2.setBackground(new java.awt.Color(255, 193, 7));
+        jButton2.setForeground(new java.awt.Color(0, 40, 80));
         jButton2.setText("Back");
         jButton2.addActionListener(this::jButton2ActionPerformed);
+        auditLogsPanel.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(562, 370, 90, -1));
 
+        jButton3.setBackground(new java.awt.Color(255, 193, 7));
+        jButton3.setForeground(new java.awt.Color(0, 40, 80));
         jButton3.setText("Print");
         jButton3.addActionListener(this::jButton3ActionPerformed);
+        auditLogsPanel.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 370, 100, -1));
 
-        javax.swing.GroupLayout auditLogsPanelLayout = new javax.swing.GroupLayout(auditLogsPanel);
-        auditLogsPanel.setLayout(auditLogsPanelLayout);
-        auditLogsPanelLayout.setHorizontalGroup(
-            auditLogsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(auditLogsPanelLayout.createSequentialGroup()
-                .addContainerGap(35, Short.MAX_VALUE)
-                .addGroup(auditLogsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, auditLogsPanelLayout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(18, 18, 18)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(414, 414, 414))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, auditLogsPanelLayout.createSequentialGroup()
-                        .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, auditLogsPanelLayout.createSequentialGroup()
-                        .addComponent(jButton3)
-                        .addGap(199, 199, 199)
-                        .addComponent(jButton2)
-                        .addGap(28, 28, 28))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, auditLogsPanelLayout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 492, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(59, 59, 59))))
+        jPanel1.setBackground(new java.awt.Color(0, 0, 0));
+        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel1.setForeground(new java.awt.Color(255, 204, 0));
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 698, Short.MAX_VALUE)
         );
-        auditLogsPanelLayout.setVerticalGroup(
-            auditLogsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, auditLogsPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(auditLogsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(auditLogsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 304, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(9, 9, 9)
-                .addGroup(auditLogsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3))
-                .addContainerGap())
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
+
+        auditLogsPanel.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 700, 10));
+
+        jLabel2.setBackground(new java.awt.Color(255, 204, 0));
+        jLabel2.setFont(new java.awt.Font("Segoe UI Variable", 0, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText("Audit Logs");
+        auditLogsPanel.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 160, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -142,7 +149,9 @@ public class auditLogs extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(auditLogsPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(auditLogsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 482, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -154,7 +163,11 @@ public class auditLogs extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
+     try {
+            jTable1.print();
+        } catch (java.awt.print.PrinterException e) {
+            JOptionPane.showMessageDialog(this, "Could not print: " + e.getMessage());
+        }
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -163,6 +176,26 @@ public class auditLogs extends javax.swing.JFrame {
             parent.setVisible(true);
         }
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jTextField5KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField5KeyReleased
+    DefaultTableModel jtbl1 = (DefaultTableModel) jTable1.getModel();
+        TableRowSorter<DefaultTableModel> sorter = new TableRowSorter<>(jtbl1);
+        
+        jTable1.setRowSorter(sorter);
+        
+        String txt = jTextField5.getText();
+        
+        if(txt.trim().length()==0){
+            sorter.setRowFilter(null);
+        }
+        else{
+            sorter.setRowFilter(RowFilter.regexFilter("(?i)"+txt));
+        }
+    }//GEN-LAST:event_jTextField5KeyReleased
+
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -196,6 +229,8 @@ public class auditLogs extends javax.swing.JFrame {
     private javax.swing.JButton jButton3;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField5;

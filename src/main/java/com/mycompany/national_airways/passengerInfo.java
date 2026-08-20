@@ -58,125 +58,125 @@ public class passengerInfo extends javax.swing.JFrame {
         jComboBox3 = new javax.swing.JComboBox<>();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
 
         jTextField5.setText("jTextField5");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(700, 450));
+
+        getQueuePanel.setBackground(new java.awt.Color(0, 51, 102));
+        getQueuePanel.setForeground(new java.awt.Color(255, 255, 255));
+        getQueuePanel.setPreferredSize(new java.awt.Dimension(700, 450));
+        getQueuePanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jTextField1.addActionListener(this::jTextField1ActionPerformed);
+        getQueuePanel.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(194, 146, 140, 33));
 
         jTextField2.addActionListener(this::jTextField2ActionPerformed);
+        getQueuePanel.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(194, 248, 140, 33));
+        getQueuePanel.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(194, 197, 140, 33));
 
+        jLabel1.setForeground(new java.awt.Color(0, 40, 80));
         jLabel1.setText("Full Name:");
+        getQueuePanel.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 150, 65, -1));
 
+        jLabel2.setForeground(new java.awt.Color(0, 40, 80));
         jLabel2.setText("Age:");
+        getQueuePanel.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 200, 30, -1));
 
+        jLabel3.setForeground(new java.awt.Color(0, 40, 80));
         jLabel3.setText("Ticket Number:");
+        getQueuePanel.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(97, 256, 91, -1));
 
+        jLabel4.setForeground(new java.awt.Color(0, 40, 80));
         jLabel4.setText("Number of Luggage:");
+        getQueuePanel.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(366, 149, -1, -1));
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Regular Passenger", "VIP Passenger", "Senior Citizen", "Standby Passenger", "Unaccompanied Minor Passenger" }));
         jComboBox1.addActionListener(this::jComboBox1ActionPerformed);
+        getQueuePanel.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 195, 140, -1));
 
+        jLabel5.setForeground(new java.awt.Color(0, 40, 80));
         jLabel5.setText("Destination:");
+        getQueuePanel.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(398, 252, 76, -1));
 
+        jLabel6.setForeground(new java.awt.Color(0, 40, 80));
         jLabel6.setText("Passenger Type:");
+        getQueuePanel.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 198, 85, -1));
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1 Bag", "2 Bags", "3 Bags", "4+ Bags" }));
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "No Bag", "1 Bags", "2 Bags", "3 Bags", "4+ Bags" }));
+        getQueuePanel.add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 146, 140, -1));
 
         jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cebu International Airport", "Iloilo International Airport" }));
         jComboBox3.addActionListener(this::jComboBox3ActionPerformed);
+        getQueuePanel.add(jComboBox3, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 249, 140, -1));
 
+        jButton1.setBackground(new java.awt.Color(255, 193, 7));
+        jButton1.setForeground(new java.awt.Color(0, 40, 80));
         jButton1.setText("Get Queue");
         jButton1.addActionListener(this::jButton1ActionPerformed);
+        getQueuePanel.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 350, 164, 35));
 
-        jButton2.setText("Prev Panel");
+        jButton2.setBackground(new java.awt.Color(255, 193, 7));
+        jButton2.setForeground(new java.awt.Color(0, 40, 80));
+        jButton2.setText(" Back");
         jButton2.addActionListener(this::jButton2ActionPerformed);
+        getQueuePanel.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 10, 85, -1));
 
-        javax.swing.GroupLayout getQueuePanelLayout = new javax.swing.GroupLayout(getQueuePanel);
-        getQueuePanel.setLayout(getQueuePanelLayout);
-        getQueuePanelLayout.setHorizontalGroup(
-            getQueuePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(getQueuePanelLayout.createSequentialGroup()
-                .addGap(260, 260, 260)
-                .addGroup(getQueuePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, getQueuePanelLayout.createSequentialGroup()
-                        .addGroup(getQueuePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(getQueuePanelLayout.createSequentialGroup()
-                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(getQueuePanelLayout.createSequentialGroup()
-                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(getQueuePanelLayout.createSequentialGroup()
-                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(getQueuePanelLayout.createSequentialGroup()
-                                .addGroup(getQueuePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(getQueuePanelLayout.createSequentialGroup()
-                                        .addGroup(getQueuePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
-                                    .addGroup(getQueuePanelLayout.createSequentialGroup()
-                                        .addComponent(jLabel4)
-                                        .addGap(4, 4, 4)))
-                                .addGroup(getQueuePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jComboBox3, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jComboBox2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                        .addGap(103, 103, 103))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, getQueuePanelLayout.createSequentialGroup()
-                        .addComponent(jButton1)
-                        .addGap(89, 89, 89))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, getQueuePanelLayout.createSequentialGroup()
-                        .addComponent(jButton2)
-                        .addGap(16, 16, 16))))
+        jPanel1.setBackground(new java.awt.Color(255, 193, 7));
+        jPanel1.setForeground(new java.awt.Color(255, 255, 255));
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 610, Short.MAX_VALUE)
         );
-        getQueuePanelLayout.setVerticalGroup(
-            getQueuePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(getQueuePanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jButton2)
-                .addGap(31, 31, 31)
-                .addGroup(getQueuePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(getQueuePanelLayout.createSequentialGroup()
-                        .addGroup(getQueuePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel1))
-                        .addGap(18, 18, 18)
-                        .addGroup(getQueuePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2))
-                        .addGap(18, 18, 18)
-                        .addGroup(getQueuePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3))
-                        .addGap(18, 18, 18)
-                        .addGroup(getQueuePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel4)
-                            .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(49, 49, 49))
-                    .addGroup(getQueuePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel6)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
-                .addGroup(getQueuePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5))
-                .addGap(18, 18, 18)
-                .addComponent(jButton1)
-                .addGap(21, 21, 21))
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 220, Short.MAX_VALUE)
         );
+
+        getQueuePanel.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 100, 610, 220));
+
+        jPanel2.setBackground(new java.awt.Color(0, 0, 0));
+        jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel2.setForeground(new java.awt.Color(255, 204, 0));
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 698, Short.MAX_VALUE)
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        getQueuePanel.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 700, 10));
+
+        jLabel7.setBackground(new java.awt.Color(255, 204, 0));
+        jLabel7.setFont(new java.awt.Font("Arial", 0, 10)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel7.setText("Enter passenger details to get a boarding queue number");
+        getQueuePanel.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 60, 310, 30));
+
+        jLabel8.setBackground(new java.awt.Color(255, 204, 0));
+        jLabel8.setFont(new java.awt.Font("Segoe UI Variable", 0, 18)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel8.setText("Passenger Information");
+        getQueuePanel.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 190, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(getQueuePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(getQueuePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -232,7 +232,7 @@ public class passengerInfo extends javax.swing.JFrame {
 
         if (!TicketValidator.isValidFormat(ticketNumber)) {
             javax.swing.JOptionPane.showMessageDialog(this,
-                    "Ticket number must follow the format AAA-YYYYMMDD-####\nExample: PAL-20260816-0001",
+                    "Ticket number must follow the format",
                     "Invalid Ticket Number", javax.swing.JOptionPane.WARNING_MESSAGE);
             return;
         }
@@ -315,6 +315,10 @@ this.dispose();
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;

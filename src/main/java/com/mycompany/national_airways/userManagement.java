@@ -13,7 +13,9 @@ import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 import javax.swing.JComboBox;
 import javax.swing.BoxLayout;
+import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
 
 /**
  *
@@ -24,9 +26,7 @@ public class userManagement extends javax.swing.JFrame {
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(userManagement.class.getName());
 
     private java.awt.Frame parent;
-    /**
-     * Creates new form NewJFrame
-     */
+    
     public userManagement() {
         initComponents();
         applyFilters(); 
@@ -86,16 +86,23 @@ public class userManagement extends javax.swing.JFrame {
         userManagementPanel = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jTextField5 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox<>();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
+        jTextField5 = new javax.swing.JTextField();
+        jButton6 = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(700, 450));
+
+        userManagementPanel.setBackground(new java.awt.Color(0, 51, 102));
+        userManagementPanel.setPreferredSize(new java.awt.Dimension(700, 450));
+        userManagementPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -107,77 +114,72 @@ public class userManagement extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(jTable1);
 
-        jButton1.setText("Search");
-        jButton1.addActionListener(this::jButton1ActionPerformed);
+        userManagementPanel.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 130, -1, 150));
 
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Filter By Role:");
+        userManagementPanel.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 100, 82, -1));
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "All", "Admin", "Staff" }));
         jComboBox1.addActionListener(this::jComboBox1ActionPerformed);
+        userManagementPanel.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 100, -1, -1));
 
+        jButton2.setBackground(new java.awt.Color(255, 193, 7));
         jButton2.setText("Add User");
         jButton2.addActionListener(this::jButton2ActionPerformed);
+        userManagementPanel.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 340, 90, -1));
 
+        jButton3.setBackground(new java.awt.Color(255, 193, 7));
         jButton3.setText("Edit User");
         jButton3.addActionListener(this::jButton3ActionPerformed);
+        userManagementPanel.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 340, 100, -1));
 
+        jButton4.setBackground(new java.awt.Color(255, 193, 7));
         jButton4.setText("Back");
         jButton4.addActionListener(this::jButton4ActionPerformed);
+        userManagementPanel.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(552, 340, 100, -1));
 
+        jButton5.setBackground(new java.awt.Color(255, 193, 7));
         jButton5.setText("Print");
         jButton5.addActionListener(this::jButton5ActionPerformed);
+        userManagementPanel.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 340, 100, -1));
 
-        javax.swing.GroupLayout userManagementPanelLayout = new javax.swing.GroupLayout(userManagementPanel);
-        userManagementPanel.setLayout(userManagementPanelLayout);
-        userManagementPanelLayout.setHorizontalGroup(
-            userManagementPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, userManagementPanelLayout.createSequentialGroup()
-                .addContainerGap(64, Short.MAX_VALUE)
-                .addGroup(userManagementPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1)
-                .addContainerGap())
-            .addGroup(userManagementPanelLayout.createSequentialGroup()
-                .addGap(43, 43, 43)
-                .addGroup(userManagementPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(userManagementPanelLayout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(userManagementPanelLayout.createSequentialGroup()
-                        .addComponent(jButton2)
-                        .addGap(51, 51, 51)
-                        .addComponent(jButton3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton5)
-                        .addGap(48, 48, 48)
-                        .addComponent(jButton4)
-                        .addGap(18, 18, 18))))
+        jPanel1.setBackground(new java.awt.Color(0, 0, 0));
+        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel1.setForeground(new java.awt.Color(255, 204, 0));
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 698, Short.MAX_VALUE)
         );
-        userManagementPanelLayout.setVerticalGroup(
-            userManagementPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(userManagementPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(userManagementPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
-                .addGroup(userManagementPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(15, 15, 15)
-                .addGroup(userManagementPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3)
-                    .addComponent(jButton4)
-                    .addComponent(jButton5))
-                .addContainerGap())
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
+
+        userManagementPanel.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 700, 10));
+
+        jTextField5.addActionListener(this::jTextField5ActionPerformed);
+        jTextField5.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextField5KeyReleased(evt);
+            }
+        });
+        userManagementPanel.add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 20, 178, -1));
+
+        jButton6.setBackground(new java.awt.Color(255, 193, 7));
+        jButton6.setForeground(new java.awt.Color(0, 40, 80));
+        jButton6.setText("Search");
+        jButton6.addActionListener(this::jButton6ActionPerformed);
+        userManagementPanel.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 20, 90, -1));
+
+        jLabel3.setBackground(new java.awt.Color(255, 204, 0));
+        jLabel3.setFont(new java.awt.Font("Segoe UI Variable", 0, 18)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setText("User Management");
+        userManagementPanel.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 180, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -197,7 +199,7 @@ public class userManagement extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
     JTextField usernameField = new JTextField();
         JPasswordField passwordField = new JPasswordField();
-        JComboBox<String> roleBox = new JComboBox<>(new String[]{"admin", "staff"});
+        JComboBox<String> roleBox = new JComboBox<>(new String[]{"Admin", "Staff"});
 
         JPanel panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
@@ -250,66 +252,121 @@ public class userManagement extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
     int selectedRow = jTable1.getSelectedRow();
-        if (selectedRow == -1) {
-            JOptionPane.showMessageDialog(this, "Select a user to edit.");
-            return;
+    if (selectedRow == -1) {
+        JOptionPane.showMessageDialog(this, "Select a user to edit.");
+        return;
+    }
+
+    String username = (String) jTable1.getValueAt(selectedRow, 1);
+    AccountDetails account = null;
+    for (AccountDetails a : AccountStorage.accounts) {
+        if (a.getuserName().equals(username)) {
+            account = a;
+            break;
         }
+    }
+    if (account == null) {
+        JOptionPane.showMessageDialog(this, "Account not found.");
+        return;
+    }
 
-        String username = (String) jTable1.getValueAt(selectedRow, 1);
-        AccountDetails account = null;
-        for (AccountDetails a : AccountStorage.accounts) {
-            if (a.getuserName().equals(username)) {
-                account = a;
-                break;
-            }
-        }
-        if (account == null) {
-            JOptionPane.showMessageDialog(this, "Account not found.");
-            return;
-        }
+    java.awt.Font labelFont = new java.awt.Font("Segoe UI", java.awt.Font.BOLD, 12);
+    java.awt.Font fieldFont = new java.awt.Font("Segoe UI", java.awt.Font.PLAIN, 12);
+    java.awt.Color accent = new java.awt.Color(0, 51, 102);
 
-        JComboBox<String> roleBox = new JComboBox<>(new String[]{"admin", "staff"});
-        roleBox.setSelectedItem(account.getroles());
-        JComboBox<String> statusBox = new JComboBox<>(new String[]{"Active", "Disabled currently no no function"});
-        statusBox.setSelectedItem(account.getStatus());
-        JPasswordField newPasswordField = new JPasswordField();
+    JComboBox<String> roleBox = new JComboBox<>(new String[]{"Admin", "Staff"});
+    roleBox.setSelectedItem(account.getroles());
+    roleBox.setFont(fieldFont);
 
-        JPanel panel = new JPanel();
-        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
-        panel.add(new JLabel("Username: " + account.getuserName()));
-        panel.add(new JLabel("Role:"));
-        panel.add(roleBox);
-        panel.add(new JLabel("Status:"));
-        panel.add(statusBox);
-        panel.add(new JLabel("New Password (leave blank to keep current):"));
-        panel.add(newPasswordField);
+    JComboBox<String> statusBox = new JComboBox<>(new String[]{"Active", "Inactive"});
+    boolean currentlyActive = "Active".equalsIgnoreCase(account.getStatus());
+    statusBox.setSelectedItem(currentlyActive ? "Active" : "Inactive");
+    statusBox.setFont(fieldFont);
 
-        int result = JOptionPane.showConfirmDialog(this, panel, "Edit User",
-                JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
+    JPasswordField newPasswordField = new JPasswordField();
+    newPasswordField.setFont(fieldFont);
 
-        if (result != JOptionPane.OK_OPTION) {
-            return;
-        }
+    JLabel usernameValue = new JLabel(account.getuserName());
+    usernameValue.setFont(fieldFont);
 
-        if (account.getuserName().equalsIgnoreCase("admin")
-                && !"admin".equals(roleBox.getSelectedItem())) {
-            JOptionPane.showMessageDialog(this, "The admin account's role can't be changed.");
-            return;
-        }
+    JPanel panel = new JPanel(new java.awt.GridBagLayout());
+    panel.setBorder(javax.swing.BorderFactory.createCompoundBorder(
+            javax.swing.BorderFactory.createTitledBorder(
+                    javax.swing.BorderFactory.createLineBorder(accent, 1),
+                    "Edit User Details",
+                    javax.swing.border.TitledBorder.LEFT,
+                    javax.swing.border.TitledBorder.TOP,
+                    labelFont,
+                    accent),
+            javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10)));
 
-        account.setroles((String) roleBox.getSelectedItem());
-        account.setStatus((String) statusBox.getSelectedItem());
+    java.awt.GridBagConstraints gbc = new java.awt.GridBagConstraints();
+    gbc.insets = new java.awt.Insets(6, 6, 6, 6);
+    gbc.anchor = java.awt.GridBagConstraints.WEST;
+    gbc.fill = java.awt.GridBagConstraints.HORIZONTAL;
 
-        char[] newPasswordChars = newPasswordField.getPassword();
-        if (newPasswordChars.length > 0) {
-            account.setpassWord(new String(newPasswordChars));
-        }
-        Arrays.fill(newPasswordChars, '0');
+    JLabel userLbl = new JLabel("Username:");
+    userLbl.setFont(labelFont);
+    gbc.gridx = 0; gbc.gridy = 0; gbc.weightx = 0;
+    panel.add(userLbl, gbc);
+    gbc.gridx = 1; gbc.weightx = 1;
+    panel.add(usernameValue, gbc);
 
-        AccountStorage.saveAccounts();
-        applyFilters();
+    JLabel roleLbl = new JLabel("Role:");
+    roleLbl.setFont(labelFont);
+    gbc.gridx = 0; gbc.gridy = 1; gbc.weightx = 0;
+    panel.add(roleLbl, gbc);
+    gbc.gridx = 1; gbc.weightx = 1;
+    panel.add(roleBox, gbc);
 
-        JOptionPane.showMessageDialog(this, "Account updated: " + account.getuserName());
+    JLabel statusLbl = new JLabel("Status:");
+    statusLbl.setFont(labelFont);
+    gbc.gridx = 0; gbc.gridy = 2; gbc.weightx = 0;
+    panel.add(statusLbl, gbc);
+    gbc.gridx = 1; gbc.weightx = 1;
+    panel.add(statusBox, gbc);
+
+    JLabel passLbl = new JLabel("<html>New Password:<br><span style='font-weight:normal;font-size:10px;color:gray;'>(leave blank to keep current)</span></html>");
+    passLbl.setFont(labelFont);
+    gbc.gridx = 0; gbc.gridy = 3; gbc.weightx = 0;
+    panel.add(passLbl, gbc);
+    gbc.gridx = 1; gbc.weightx = 1;
+    panel.add(newPasswordField, gbc);
+
+    panel.setPreferredSize(new java.awt.Dimension(320, panel.getPreferredSize().height));
+
+    int result = JOptionPane.showConfirmDialog(this, panel, "Edit User",
+            JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
+
+    if (result != JOptionPane.OK_OPTION) {
+        return;
+    }
+
+    if (account.getuserName().equalsIgnoreCase("admin")
+            && !"admin".equals(roleBox.getSelectedItem())) {
+        JOptionPane.showMessageDialog(this, "The admin account's role can't be changed.");
+        return;
+    }
+
+    if (account.getuserName().equalsIgnoreCase("admin")
+            && "Inactive".equals(statusBox.getSelectedItem())) {
+        JOptionPane.showMessageDialog(this, "The admin account can't be set to Inactive.");
+        return;
+    }
+
+    account.setroles((String) roleBox.getSelectedItem());
+    account.setStatus((String) statusBox.getSelectedItem());
+
+    char[] newPasswordChars = newPasswordField.getPassword();
+    if (newPasswordChars.length > 0) {
+        account.setpassWord(new String(newPasswordChars));
+    }
+    Arrays.fill(newPasswordChars, '0');
+
+    AccountStorage.saveAccounts();
+    applyFilters();
+
+    JOptionPane.showMessageDialog(this, "Account updated: " + account.getuserName());
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
@@ -331,9 +388,29 @@ public class userManagement extends javax.swing.JFrame {
      applyFilters();
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-    applyFilters();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void jTextField5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField5ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField5ActionPerformed
+
+    private void jTextField5KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField5KeyReleased
+        DefaultTableModel jtbl1 = (DefaultTableModel) jTable1.getModel();
+        TableRowSorter<DefaultTableModel> sorter = new TableRowSorter<>(jtbl1);
+
+        jTable1.setRowSorter(sorter);
+
+        String txt = jTextField5.getText();
+
+        if(txt.trim().length()==0){
+            sorter.setRowFilter(null);
+        }
+        else{
+            sorter.setRowFilter(RowFilter.regexFilter("(?i)"+txt));
+        }
+    }//GEN-LAST:event_jTextField5KeyReleased
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton6ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -361,13 +438,15 @@ public class userManagement extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField5;
